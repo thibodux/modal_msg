@@ -25,10 +25,11 @@ The Modal Text Message App for Splunk is a library to extend Splunk dashboards w
 
 ### About
 
-Author: Ryan Thibodeaux
-Version: 1.0
-License: BSD 3-clause "New" or "Revised" License
-Folder Name: modal_msg
+Author: Ryan Thibodeaux<br/>
+Version: 1.0<br/>
+License: BSD 3-clause "New" or "Revised" License<br/>
+Folder Name: modal_msg<br/>
+
 
 | Splunk Components | Added?|
 | --- | --- |
@@ -39,6 +40,7 @@ Folder Name: modal_msg
 | Binaries | FALSE |
 | Data Models / Sets | FALSE |
 | Saved Searches | FALSE |
+
 
 ### Release Notes
 
@@ -122,7 +124,7 @@ The corresponding tokens and there effects are described below:
 
 | Token | Effect |
 | --- | --- |
-| modal_msg_title | set Title of next Modal Window to passed string |
+| modal_msg_title | Set the Title of next Modal Window to passed string |
 | modal_msg_info | Trigger "info" message set to passed string |
 | modal_msg_debug | Trigger "debug" message set to passed string |
 | modal_msg_warn | Trigger "warn" message set to passed string |
