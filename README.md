@@ -50,7 +50,7 @@ Initial release with support for custom text messages
 
 ### Support and Resources
 
-Additional information and previous releases can be found on the [Github page](https://github.com/thibodux/modal_msg).
+Additional information and previous releases can be found on the [Github page](httpss://github.com/thibodux/modal_msg).
 
 ### License
 
@@ -64,13 +64,25 @@ None.
 
 ## Installation and Configuration
 
+### Building
+
+Skip this if you donwloaded the app from Splunkbase
+
+Assuming you are checking out the source from Github, here are the steps to build the app tarball to then install in Splunk (assumes Linux or Mac). Note, make sure you keep the top-level repo folder name as "modal_msg" or you will potentially build a poorly structured application package.
+
+```
+$ cd <ROOT_DIRECTORY_OF_YOUR_CHOICE>
+$ git clone https://github.com/thibodux/modal_msg modal_msg
+$ tar -cz --exclude='.git' --exclude='.gitignore' -f modal_msg.tar.gz ./modal_msg
+```
+
 ### Software requirements
 
 The included demo / example dashboards require Splunk 6.3 or newer
 
 The included software library in the app requires Splunk 6.0 or newer.
 
-The [Splunk Enterprise system requirements](http://docs.splunk.com/Documentation/Splunk/latest/Installation/Systemrequirements) apply.
+The [Splunk Enterprise system requirements](https://docs.splunk.com/Documentation/Splunk/latest/Installation/Systemrequirements) apply.
 
 ### Installation
 
