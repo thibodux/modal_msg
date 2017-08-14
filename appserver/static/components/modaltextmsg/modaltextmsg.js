@@ -121,6 +121,21 @@ define(function(require, exports, module) {
         this.$el.find(".modal-body").append(this.content);
       }
       this.$el.show();
+
+      // make backdrops transparent for any stacked modals
+      var modals = $("." + this.className);
+      modals.each(function(i, m) {
+        if (i > 0) {
+          if (!$(m).children(".modal-text-msg-backdrop").hasClass("modal-text-msg-backdrop-clear")) {
+            $(m).children(".modal-text-msg-backdrop").addClass("modal-text-msg-backdrop-clear");
+          }
+        } else if (i == 0) {
+          if ($(m).children(".modal-text-msg-backdrop").hasClass("modal-text-msg-backdrop-clear")) {
+            $(m).children(".modal-text-msg-backdrop").removeClass("modal-text-msg-backdrop-clear");
+          }
+        }
+      });
+
       return this;
     },
 

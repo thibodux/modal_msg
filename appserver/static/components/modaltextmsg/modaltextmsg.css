@@ -26,6 +26,10 @@
   cursor: pointer;
 }
 
+.modal-text-msg-backdrop-clear {
+  opacity: 0.0 !important;
+}
+
 /* header items */
 .modal-text-msg > .modal-header {
   padding: 7px 0px 7px 20px
