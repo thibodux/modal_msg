@@ -6,7 +6,7 @@
 
   <row>
     <panel>
-      <title>Message Type Demo</title>
+      <title>Manual Message Demo (enter a message to trigger the modal message)</title>
       <input searchWhenChanged="true" token="msg_type" type="dropdown">
         <label>Choose Message Type</label>
         <choice value="info">Info</choice>
@@ -23,7 +23,7 @@
         <allowCustomValues>false</allowCustomValues>
       </input>
       <input searchWhenChanged="true" token="msg_title" type="text">
-        <label>Inset Title Here (optional)</label>
+        <label>Insert Title Here (optional)</label>
         <change>
           <condition match="isnotnull('value')">
             <set token="modal_msg_title">$value$</set>
@@ -56,6 +56,32 @@
         </change>
       </input>      
     </panel>
+    <panel>
+      <title>URL Token Message Example</title>    
+      <html>
+        <h4><code>Click on the row of the table to reload this dashboard with a visible message after it loads.</code></h4>
+      </html>
+      <table>
+        <search>
+          <query>
+            | gentimes start=-1
+            | eval Title = "Load Time Example"
+            | eval Message = "This is an example load time message"
+            | table Title Message
+          </query>
+        </search>
+        <option name="wrap">true</option>
+        <option name="drilldown">row</option>
+        <option name="count">10</option>
+        <drilldown>
+          <link>
+            <![CDATA[
+              /app/modal_msg/demo?modal_msg_url_title=$row.Title$&modal_msg_url_info=$row.Message$
+            ]]>
+          </link>
+        </drilldown>
+      </table>
+    </panel>    
   </row>
 
 
@@ -65,17 +91,26 @@
       <input searchWhenChanged="true" type="time">
         <label>Search Period</label>
         <default>
-          <earliest>-1d@d</earliest>
+          <earliest>-1h@h</earliest>
           <latest>now</latest>
         </default>
       </input>
+      <input searchWhenChanged="true" token="filter_index" type="text">
+        <label>Index Filter</label>
+        <initialValue>*</initialValue>
+        <change>
+          <condition match="isnotnull('value') AND (len('value') == 0 OR match('value', &quot;^\\s+$&quot;))">
+            <unset token="form.filter_index"/>
+          </condition>
+        </change>
+      </input>      
       <html>
-        <h4><code>Try setting the Search Period to a very short amount of time that should return no data.</code></h4>
+        <h4><code>Try setting the Search Period or Index Filter to values that should return no data.</code></h4>
       </html>
       <table>
         <search>
           <query>
-            | tstats count as count latest(_time) as latest where index=* by index
+            | tstats count as count latest(_time) as latest where index=$filter_index|s$ by index
             | sort 10 -count
             | eval latest = strftime(latest, "%Y-%m-%d %H:%M:%S %Z")
             | fields index count latest
@@ -84,7 +119,7 @@
           <done>
             <condition match="'job.resultCount' == 0">
               <set token="modal_msg_title">Warning: No Results</set>
-              <set token="modal_msg_warn">The Index Metadata Search returned no results&lt;br/&gt;Consider adjusting the search period.</set>
+              <set token="modal_msg_warn">The Index Metadata Search returned no results&lt;br/&gt;Consider adjusting the search period or filter string.</set>
             </condition>
           </done>
         </search>

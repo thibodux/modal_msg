@@ -54,14 +54,14 @@
     // parse passed modal text message content and trigger the display
     function parseMessageToken(token, msg) {
       var value = msg;
-      if (typeof value !== 'undefined' && MESSAGE_TOKENS.indexOf(token) >= 0) {
+      if (typeof value !== 'undefined' && (MESSAGE_TOKENS.indexOf(token) >= 0 || MESSAGE_URL_TOKENS.indexOf(token) >= 0)) {
         if (Object.prototype.toString.call(msg) === '[object Array]') {
           value = msg[0];
         }
         value = value.trim();
         if (value.length > 0) {
           next_msg = value;
-          next_msg_type = token.replace("modal_msg", "").replace("_", "");
+          next_msg_type = token.split("_").pop();
           triggerMsgDisplay();
         }
       }
@@ -87,9 +87,21 @@
 
     // array of message tokens in increasing order of priority
     const MESSAGE_TOKENS = ["modal_msg_debug", "modal_msg_info", "modal_msg_warn", "modal_msg_error"];
+    const MESSAGE_URL_TOKENS = ["modal_msg_url_debug", "modal_msg_url_info", "modal_msg_url_warn", "modal_msg_url_error"];
     var next_title = undefined;
     var next_msg = undefined;
     var next_msg_type = undefined;
+
+    //parse and display messages passed via URL tokens
+    var urlTokensSet = urlTokenModel.keys();
+    if (urlTokensSet.indexOf("modal_msg_url_title") >= 0) {
+      parseMessageTitle("modal_msg_url_title", urlTokenModel.get("modal_msg_url_title"));
+    }
+    for (var i = 0; i < MESSAGE_URL_TOKENS.length; i++) {
+      if (urlTokensSet.indexOf(MESSAGE_URL_TOKENS[i]) >= 0) {
+        parseMessageToken(MESSAGE_URL_TOKENS[i], urlTokenModel.get(MESSAGE_URL_TOKENS[i]));
+      }
+    }
 
     // listen for changes to title token
     submittedTokenModel.on("change:modal_msg_title", function(model, value, options) {
@@ -109,17 +121,6 @@
       });
     });
 
-    //parse and display messages passed via URL tokens
-    var urlTokensSet = urlTokenModel.keys();
-    if (urlTokensSet.indexOf("modal_msg_title") >= 0) {
-      parseMessageTitle(modal_msg_title, urlTokenModel.get("modal_msg_title"));
-    }
-    for (var i = MESSAGE_TOKENS.length - 1; i >= 0; --i) {
-      if (urlTokensSet.indexOf(MESSAGE_TOKENS[i]) >= 0) {
-        parseMessageToken(MESSAGE_TOKENS[i], urlTokenModel.get(MESSAGE_TOKENS[i]));
-        break;
-      }
-    }
   },function(err) {
     // error callback
     // the error has a list of modules that failed

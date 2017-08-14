@@ -126,7 +126,7 @@ For HTML dashboards, you need to add a the following element before the closing 
 
 If you want to use the library in the `/appserver/static/components/` folder in your own app (i.e., you just want to use the code without installing this Splunk app), you must copy the folder `/appserver/static/components/modaltextmsg` into your app's `/appserver/static/components/` folder. You must then copy the contents of the included file `/appserver/static/load.js` to setup the RequireJS paths to suit your app's needs. Naming conventions outside of this app's library do not matter - you must update the paths accordingly.
 
-#### Triggering Modal Messages
+#### Triggering Modal Messages in SimpleXML
 
 This library monitors specific Splunk tokens to trigger modal messages. The app allows a developer to modify the Title and the Message content in the modal window.
 
@@ -139,7 +139,7 @@ The corresponding tokens and there effects are described below:
 | modal_msg_title | Set the Title of next Modal Window to passed string |
 | modal_msg_info | Trigger "info" message set to passed string |
 | modal_msg_debug | Trigger "debug" message set to passed string |
-| modal_msg_warn | Trigger "warn" message set to passed string |
+| modal_msg_warn | Trigger "warning" message set to passed string |
 | modal_msg_error | Trigger "error" message set to passed string |
 
 Note, the title string set in the "modal_msg_title" token only applies to the next modal window, i.e., the title is reset for each message. If the title is not set, a default title corresponding to the message type is used, e.g., "Error", "Warning", etc.
@@ -162,17 +162,29 @@ Here is an example of how to trigger a warning message when no results are retur
 </search>
 ```
 
+#### Triggering Modal Messages at Dashboard Load time via URL
+
+Because of how Splunk handles tokens in the URL, there is a separate set of tokens to trigger modal windows via the URL. The same logic and patterns hold as for the tokens in SimpleXML - the only difference is an addition of "_url" to the token names 
+
+| Token | Effect |
+| --- | --- |
+| modal_msg_url_title | Set the Title of Modal Window when the dashboard loads |
+| modal_msg_url_info | The "info" message for the dashboard load time modal window |
+| modal_msg_url_debug | The "debug" message for the dashboard load time modal window |
+| modal_msg_url_warn | The "warning" message for the dashboard load time modal window |
+| modal_msg_url_error | The "error" message for the dashboard load time modal window |
+
 ##### URL Example
 
 The app library is designed to look for the triggering tokens passed via the URL. If any of the message triggering tokens are set in the URL at the time of loading the dashboard, the library will display on the first highest priority message it finds.
 
 You can see an example by installing the app and then adding the following string to URL of the demo dashboard:
 
-`modal_msg_title=Test%20Loading%20Message&modal_msg_error=This%20message%20was%20set%20in%20the%20URL`
+`modal_msg_url_title=Test%20Loading%20Message&modal_msg_url_error=This%20message%20was%20set%20in%20the%20URL`
 
 So an example of the full URL would be as follows:
 
-`http://<YOUR_SPLUNK_SERVER>:8000/en-US/app/modal_msg/demo?modal_msg_title=Test%20Loading%20Message&modal_msg_error=This%20message%20was%20set%20in%20the%20URL`
+`http://<YOUR_SPLUNK_SERVER>:8000/en-US/app/modal_msg/demo?modal_msg_url_title=Test%20Loading%20Message&modal_msg_url_error=This%20message%20was%20set%20in%20the%20URL`
 
 ### Upgrading
 
