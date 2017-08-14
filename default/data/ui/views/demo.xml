@@ -1,0 +1,98 @@
+<form onunloadCancelJobs="true" hideFooter="true" script="modal_msg:load.js">
+
+  <label>Demo</label>
+
+  <fieldset autoRun="true" submitButton="false"/>
+
+  <row>
+    <panel>
+      <title>Message Type Demo</title>
+      <input searchWhenChanged="true" token="msg_type" type="dropdown">
+        <label>Choose Message Type</label>
+        <choice value="info">Info</choice>
+        <choice value="debug">Debug</choice>
+        <choice value="warn">Warning</choice>
+        <choice value="error">Error</choice>
+        <default>info</default>
+        <change>
+          <unset token="form.msg_title"/>
+          <unset token="form.msg"/>
+        </change>
+        <selectFirstChoice>false</selectFirstChoice>
+        <showClearButton>false</showClearButton>
+        <allowCustomValues>false</allowCustomValues>
+      </input>
+      <input searchWhenChanged="true" token="msg_title" type="text">
+        <label>Inset Title Here (optional)</label>
+        <change>
+          <condition match="isnotnull('value')">
+            <set token="modal_msg_title">$value$</set>
+          </condition>
+        </change>
+      </input>
+      <input searchWhenChanged="true" token="msg" type="text">
+        <label>Insert Message Here</label>
+        <change>
+          <condition match="'msg_type' == &quot;info&quot; AND isnotnull('value')">
+            <set token="modal_msg_info">$value$</set>
+            <unset token="form.msg_title"/>
+            <unset token="form.msg"/>
+          </condition>
+          <condition match="'msg_type' == &quot;debug&quot; AND isnotnull('value')">
+            <set token="modal_msg_debug">$value$</set>
+            <unset token="form.msg_title"/>
+            <unset token="form.msg"/>
+          </condition>
+          <condition match="'msg_type' == &quot;warn&quot; AND isnotnull('value')">
+            <set token="modal_msg_warn">$value$</set>
+            <unset token="form.msg_title"/>
+            <unset token="form.msg"/>
+          </condition>
+          <condition match="'msg_type' == &quot;error&quot; AND isnotnull('value')">
+            <set token="modal_msg_error">$value$</set>
+            <unset token="form.msg_title"/>
+            <unset token="form.msg"/>
+          </condition>
+        </change>
+      </input>      
+    </panel>
+  </row>
+
+
+  <row>
+    <panel>
+      <title>Index Metadata Search</title>
+      <input searchWhenChanged="true" type="time">
+        <label>Search Period</label>
+        <default>
+          <earliest>-1d@d</earliest>
+          <latest>now</latest>
+        </default>
+      </input>
+      <html>
+        <h4><code>Try setting the Search Period to a very short amount of time that should return no data.</code></h4>
+      </html>
+      <table>
+        <search>
+          <query>
+            | tstats count as count latest(_time) as latest where index=* by index
+            | sort 10 -count
+            | eval latest = strftime(latest, "%Y-%m-%d %H:%M:%S %Z")
+            | fields index count latest
+            | rename index as Index, latest as "Latest Event", count as "# Events in search period"
+          </query>
+          <done>
+            <condition match="'job.resultCount' == 0">
+              <set token="modal_msg_title">Warning: No Results</set>
+              <set token="modal_msg_warn">The Index Metadata Search returned no results&lt;br/&gt;Consider adjusting the search period.</set>
+            </condition>
+          </done>
+        </search>
+        <option name="wrap">true</option>
+        <option name="drilldown">none</option>
+        <option name="count">10</option>
+      </table>
+    </panel>
+  </row>
+
+</form>

@@ -1,0 +1,78 @@
+/*
+ * Copyright (c) 2017, Ryan Thibodeaux. All Rights Reserved
+ * see included LICENSE file (BSD 3-clause)
+ */
+
+/* top-level entity */
+.modal-text-msg {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  width: 450px;
+  margin-left: -225px;
+  z-index: 200000;
+}
+
+.modal-text-msg > .modal-body {
+  padding: 15px 20px 10px 20px;
+  max-height: 800px;
+}
+
+/* background */
+.modal-text-msg-backdrop {
+  opacity: 0.5;
+  background-color: black;
+  z-index: 100000;
+  cursor: pointer;
+}
+
+/* header items */
+.modal-text-msg > .modal-header {
+  padding: 7px 0px 7px 20px
+}
+
+.modal-text-msg > .modal-header {
+  background: #90b5ea;
+}
+.modal-text-msg > .info {
+  background: #90b5ea;
+}
+.modal-text-msg > .debug {
+  background: #f5f5f5;
+}
+.modal-text-msg > .warn {
+  background: #dd9754;
+}
+.modal-text-msg > .error {
+  background: indianred;
+}
+.modal-text-msg > .modal-header > .modal-title {
+  line-height: 22px;
+  overflow-wrap: break-word;
+  padding-right: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Text content elements */
+.modal-text-msg p {
+  font-size:14px;
+  line-height: 20px;
+}
+
+/* footer items */
+.modal-text-msg > .modal-footer {
+  padding: 5px 10px 5px 10px;
+  background-color: #f5f5f5;
+}
+
+.modal-text-msg-close:before {
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.modal-text-msg-close:hover:before {
+  color: darkred;
+}
