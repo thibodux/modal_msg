@@ -46,7 +46,7 @@ Folder Name: modal_msg<br/>
 
 #### v1.0.0
 
-Initial release with support for custom text messages
+Initial release with support for custom text messages.
 
 ### Support and Resources
 
@@ -66,7 +66,7 @@ None.
 
 ### Building
 
-Skip this if you donwloaded the app from Splunkbase
+Skip this if you donwloaded the app from Splunkbase.
 
 Assuming you are checking out the source from Github, here are the steps to build the app tarball to then install in Splunk (assumes Linux or Mac). Note, make sure you keep the top-level repo folder name as "modal_msg" or you will potentially build a poorly structured application package.
 
