@@ -73,7 +73,8 @@ Assuming you are checking out the source from Github, here are the steps to buil
 ```
 $ cd <ROOT_DIRECTORY_OF_YOUR_CHOICE>
 $ git clone https://github.com/thibodux/modal_msg modal_msg
-$ tar -cz --exclude='.git' --exclude='.gitignore' -f modal_msg.tar.gz ./modal_msg
+$ tar c --exclude='.git' --exclude='.gitignore' modal_msg > modal_msg.tar
+$ gzip -q modal_msg.tar
 ```
 
 ### Software requirements
