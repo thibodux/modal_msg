@@ -96,7 +96,7 @@ define(function(require, exports, module) {
       this.content = c;
 
       // render the content and add it to the HTML body but don't show it
-      (this.render()).$el.hide()
+      (this.render()).$el.addClass('modal-text-msg-unactivated');
       $(document.body).append(this.el);
     },
 
@@ -119,6 +119,9 @@ define(function(require, exports, module) {
 
     // show the modal text message window
     show: function() {
+      if (this.$el.hasClass('modal-text-msg-unactivated')) {
+        this.$el.removeClass('modal-text-msg-unactivated').addClass('modal-text-msg-activated');
+      }
       this.updateVisibility();
       return this;
     },
@@ -131,12 +134,19 @@ define(function(require, exports, module) {
       return this;
     },
 
+    // update visibility of modal windows that
+    // have been activated
     updateVisibility: function() {
       // make the last window visible and all others invisible
-      var modals = $("." + this.className);
+      var modals = $(".modal-text-msg-activated");
       if (modals.length > 0) {
-        modals.hide();
-        modals.last().show();
+        modals.each(function(i,m) {
+          if (i == modals.length - 1) {
+            $(m).show()
+          } else {
+            $(m).hide();
+          }
+        });
       }
     },
 

@@ -13,6 +13,11 @@
   z-index: 200000;
 }
 
+.modal-text-msg-unactivated {
+  display: none !important;
+}
+.modal-text-msg-activated {}
+
 .modal-text-msg > .modal-body {
   padding: 15px 20px 10px 20px;
   max-height: 800px;
