@@ -94,6 +94,10 @@ define(function(require, exports, module) {
         c.appendChild(para);
       });
       this.content = c;
+
+      // render the content and add it to the HTML body but don't show it
+      (this.render()).$el.hide()
+      $(document.body).append(this.el);
     },
 
     // click listeners
@@ -109,33 +113,13 @@ define(function(require, exports, module) {
         title : this.options.title,
         type : this.options.type
       }));
+      this.$el.find(".modal-body").append(this.content);
       return this;
     },
 
-    // show the modal text message where we render it
-    // if it is not already set
+    // show the modal text message window
     show: function() {
-      var p = $('#' + this.id);
-      if (!p.length) {
-        $(document.body).append(this.render().el);
-        this.$el.find(".modal-body").append(this.content);
-      }
-      this.$el.show();
-
-      // make backdrops transparent for any stacked modals
-      var modals = $("." + this.className);
-      modals.each(function(i, m) {
-        if (i > 0) {
-          if (!$(m).children(".modal-text-msg-backdrop").hasClass("modal-text-msg-backdrop-clear")) {
-            $(m).children(".modal-text-msg-backdrop").addClass("modal-text-msg-backdrop-clear");
-          }
-        } else if (i == 0) {
-          if ($(m).children(".modal-text-msg-backdrop").hasClass("modal-text-msg-backdrop-clear")) {
-            $(m).children(".modal-text-msg-backdrop").removeClass("modal-text-msg-backdrop-clear");
-          }
-        }
-      });
-
+      this.updateVisibility();
       return this;
     },
 
@@ -143,7 +127,17 @@ define(function(require, exports, module) {
     close: function() {
       this.unbind();
       this.remove();
+      this.updateVisibility();
       return this;
+    },
+
+    updateVisibility: function() {
+      // make the last window visible and all others invisible
+      var modals = $("." + this.className);
+      if (modals.length > 0) {
+        modals.hide();
+        modals.last().show();
+      }
     },
 
     // html template
