@@ -66,7 +66,7 @@
           <query>
             | gentimes start=-1
             | eval Title = "Load Time Example"
-            | eval Message = "This is an example load time message"
+            | eval Message = "This is an example of a load time message"
             | table Title Message
           </query>
         </search>
