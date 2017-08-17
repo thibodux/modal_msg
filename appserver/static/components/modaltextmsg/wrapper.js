@@ -1,7 +1,7 @@
 /**
  * @fileoverview Controlling logic for the Modal Text Message feature
  * @author Ryan Thibodeaux
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 /*
@@ -125,7 +125,6 @@
     // error callback
     // the error has a list of modules that failed
     var failedId = err.requireModules && err.requireModules[0];
-    requirejs.undef(failedId);
     console.error("Error when loading dependencies in Modal Text Message wrapper: ", err);
   });
 }).call(this);

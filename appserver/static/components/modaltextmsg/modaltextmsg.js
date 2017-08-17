@@ -1,7 +1,7 @@
 /**
  * @fileoverview Class definition for Modal Text Message
  * @author Ryan Thibodeaux
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 /*
@@ -9,29 +9,22 @@
  * see included LICENSE file (BSD 3-clause)
  */
 
-
 define(function(require, exports, module) {
 
   "use strict";
+
+  var _ = require('underscore');
+  var $ = require('jquery');
+  var Backbone = require('backbone');
+
+  require("css!/static/app/modal_msg/components/modaltextmsg/modaltextmsg.css");
 
   // escapes any HTML passed into string
   function escapeHTML(str) {
     var div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
-  }
-
-  var _ = require('underscore');
-  var $ = require('jquery');
-  var Backbone = require('backbone');
-
-  /* uncomment the following line if
-   * you find a workaround to load
-   * the CSS here instead of in the
-   * the higher-level RequireJS calls
-   */
-  //require("css!./modaltextmsg.css");
-
+  }  
 
 /**
  * Creates a new ModalTextMsg object.
