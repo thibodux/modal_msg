@@ -14,6 +14,7 @@
     "jquery",
     "ModalTextMsg",
     "splunkjs/mvc",
+    "splunkjs/ready!",
     "splunkjs/mvc/simplexml/ready!"
   ], function($, ModalTextMsg, mvc) {
 
@@ -92,7 +93,7 @@
     var next_msg = undefined;
     var next_msg_type = undefined;
 
-    //parse and display messages passed via URL tokens
+    // parse and display messages passed via URL tokens
     var urlTokensSet = urlTokenModel.keys();
     if (urlTokensSet.indexOf("modal_msg_url_title") >= 0) {
       parseMessageTitle("modal_msg_url_title", urlTokenModel.get("modal_msg_url_title"));
@@ -103,6 +104,7 @@
       }
     }
 
+
     // listen for changes to title token
     submittedTokenModel.on("change:modal_msg_title", function(model, value, options) {
       parseMessageTitle("modal_msg_title", value);
@@ -110,6 +112,18 @@
         setToken("modal_msg_title", undefined, true);
       }
     });
+
+    // see if the value was already set at page load via quick changes that
+    // may not be registered in the code block above since it isn't loaded
+    // quickly enough in 6.5+
+    var currentTitle = submittedTokenModel.get("modal_msg_title");
+    var urlTitle = urlTokenModel.get("modal_msg_title");
+    if (typeof currentTitle !== "undefined" && currentTitle.length > 0) {
+      if (typeof urlTitle === "undefined" || urlTitle.length < 1) {
+        setToken("modal_msg_title", currentTitle + " ", true);
+      }
+    }
+
 
     // listen for changes to the message type tokens
     MESSAGE_TOKENS.forEach(function(str) {
@@ -119,8 +133,18 @@
           setToken(str, undefined, true);
         }
       });
-    });
 
+      // see if the value was already set at page load via quick changes that
+      // may not be registered in the code block above since it isn't loaded
+      // quickly enough in 6.5+
+      var currentValue = submittedTokenModel.get(str);
+      var urlValue = urlTokenModel.get(str);
+      if (typeof currentValue !== "undefined" && currentValue.length > 0) {
+        if (typeof urlValue === "undefined" || urlValue.length < 1) {
+          setToken(str, currentValue + " ", true);
+        }
+      }
+    });
   },function(err) {
     // error callback
     // the error has a list of modules that failed
