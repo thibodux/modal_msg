@@ -55,7 +55,7 @@
     // parse passed modal text message content and trigger the display
     function parseMessageToken(token, msg) {
       var value = msg;
-      if (typeof value !== 'undefined' && (MESSAGE_TOKENS.indexOf(token) >= 0 || MESSAGE_URL_TOKENS.indexOf(token) >= 0)) {
+      if (typeof value !== 'undefined') {
         if (Object.prototype.toString.call(msg) === '[object Array]') {
           value = msg[0];
         }
@@ -87,49 +87,33 @@
     /////////////////////////////////////////
 
     // array of message tokens in increasing order of priority
-    const MESSAGE_TOKENS = ["modal_msg_debug", "modal_msg_info", "modal_msg_warn", "modal_msg_error"];
-    const MESSAGE_URL_TOKENS = ["modal_msg_url_debug", "modal_msg_url_info", "modal_msg_url_warn", "modal_msg_url_error"];
-    var next_title = undefined;
-    var next_msg = undefined;
+    const MESSAGE_TOKENS     = ["modal_msg_title", "modal_msg_debug", "modal_msg_info", "modal_msg_warn", "modal_msg_error"];
+    const MESSAGE_URL_TOKENS = ["modal_msg_url_title", "modal_msg_url_debug", "modal_msg_url_info", "modal_msg_url_warn", "modal_msg_url_error"];
+    var next_title    = undefined;
+    var next_msg      = undefined;
     var next_msg_type = undefined;
 
     // parse and display messages passed via URL tokens
     var urlTokensSet = urlTokenModel.keys();
-    if (urlTokensSet.indexOf("modal_msg_url_title") >= 0) {
-      parseMessageTitle("modal_msg_url_title", urlTokenModel.get("modal_msg_url_title"));
-    }
     for (var i = 0; i < MESSAGE_URL_TOKENS.length; i++) {
       if (urlTokensSet.indexOf(MESSAGE_URL_TOKENS[i]) >= 0) {
-        parseMessageToken(MESSAGE_URL_TOKENS[i], urlTokenModel.get(MESSAGE_URL_TOKENS[i]));
+        if (MESSAGE_URL_TOKENS[i] === "modal_msg_url_title") {
+          parseMessageTitle(MESSAGE_URL_TOKENS[i], urlTokenModel.get(MESSAGE_URL_TOKENS[i]));
+        } else {
+          parseMessageToken(MESSAGE_URL_TOKENS[i], urlTokenModel.get(MESSAGE_URL_TOKENS[i]));
+        }
       }
     }
-
-
-    // listen for changes to title token
-    submittedTokenModel.on("change:modal_msg_title", function(model, value, options) {
-      parseMessageTitle("modal_msg_title", value);
-      if (typeof value !== 'undefined') {
-        setToken("modal_msg_title", undefined, true);
-      }
-    });
-
-    // see if the value was already set at page load via quick changes that
-    // may not be registered in the code block above since it isn't loaded
-    // quickly enough in 6.5+
-    var currentTitle = submittedTokenModel.get("modal_msg_title");
-    var urlTitle = urlTokenModel.get("modal_msg_title");
-    if (typeof currentTitle !== "undefined" && currentTitle.length > 0) {
-      if (typeof urlTitle === "undefined" || urlTitle.length < 1) {
-        setToken("modal_msg_title", currentTitle + " ", true);
-      }
-    }
-
 
     // listen for changes to the message type tokens
     MESSAGE_TOKENS.forEach(function(str) {
       submittedTokenModel.on("change:" + str, function(model, value, options) {
-        if (typeof value !== 'undefined') {
+        if (str === "modal_msg_title") {
+          parseMessageTitle(str, value);
+        } else {
           parseMessageToken(str, value);
+        }
+        if (typeof value !== 'undefined') {
           setToken(str, undefined, true);
         }
       });

@@ -69,6 +69,8 @@
             | eval Message = "This is an example of a load time message"
             | table Title Message
           </query>
+          <earliest>-1s@s</earliest>
+          <latest>now</latest>
         </search>
         <option name="wrap">true</option>
         <option name="drilldown">row</option>
