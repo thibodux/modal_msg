@@ -46,7 +46,9 @@ Folder Name: modal_msg<br/>
 
 #### v1.0.1
 
-Small change to CSS path loading and removed part of requirejs error handling.
+- Fixed oversight that tokens in 6.5 and 6.6 may not be detected in the change event handlers if the dashboard tokens are changed quickly after loading
+- Small change to CSS path loading 
+- Removed part of requirejs error handling.
 
 #### v1.0.0
 
