@@ -26,7 +26,7 @@ The Modal Text Message App for Splunk is a library to extend Splunk dashboards w
 ### About
 
 Author: Ryan Thibodeaux<br/>
-Version: 1.0.1<br/>
+Version: 1.0.2<br/>
 License: BSD 3-clause "New" or "Revised" License<br/>
 Folder Name: modal_msg<br/>
 
@@ -44,11 +44,15 @@ Folder Name: modal_msg<br/>
 
 ### Release Notes
 
+#### v1.0.2
+
+- Fixed CSS to make consistent the corners of header and footer sections
+
 #### v1.0.1
 
 - Fixed oversight that tokens in 6.5 and 6.6 may not be detected in the change event handlers if the dashboard tokens are changed quickly after loading
 - Small change to CSS path loading 
-- Removed part of requirejs error handling.
+- Removed part of requirejs error handling
 
 #### v1.0.0
 
@@ -56,7 +60,7 @@ Initial release with support for custom text messages.
 
 ### Support and Resources
 
-Additional information and previous releases can be found on the [Github page](httpss://github.com/thibodux/modal_msg).
+Additional information and previous releases can be found on the [Github page](https://github.com/thibodux/modal_msg).
 
 ### License
 

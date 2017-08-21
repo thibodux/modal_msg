@@ -42,6 +42,13 @@
 
 .modal-text-msg > .modal-header {
   background: #90b5ea;
+  -webkit-border-top-left-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  border-top-right-radius: 5px;
+  border-radius: 5px 5px 0 0;
 }
 .modal-text-msg > .info {
   background: #90b5ea;
@@ -74,6 +81,13 @@
 .modal-text-msg > .modal-footer {
   padding: 5px 10px 5px 10px;
   background-color: #f5f5f5;
+  border-radius: 0 0 5px 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-radius-bottomright: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .modal-text-msg-close:before {
