@@ -76,7 +76,7 @@ None.
 
 ### Building
 
-Skip this if you donwloaded the app from Splunkbase.
+Skip this if you downloaded the app from Splunkbase.
 
 Assuming you are checking out the source from Github, here are the steps to build the app tarball to then install in Splunk (assumes Linux or Mac). Note, make sure you keep the top-level repo folder name as "modal_msg" or you will potentially build a poorly structured application package.
 
