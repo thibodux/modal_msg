@@ -26,7 +26,7 @@ The Modal Text Message App for Splunk is a library to extend Splunk dashboards w
 ### About
 
 Author: Ryan Thibodeaux<br/>
-Version: 1.0.2<br/>
+Version: 1.0.3<br/>
 License: BSD 3-clause "New" or "Revised" License<br/>
 Folder Name: modal_msg<br/>
 
@@ -43,6 +43,12 @@ Folder Name: modal_msg<br/>
 
 
 ### Release Notes
+
+#### v1.0.3
+
+- Updated version number on About page
+- Updated App description
+- Gave license file ".txt" extension to satisfy Splunk App-Inspect tool
 
 #### v1.0.2
 
