@@ -4,7 +4,6 @@
 
 - Overview
     - About
-    - License
     - Release Notes
     - Support
     - License
@@ -64,7 +63,7 @@ Folder Name: modal_msg<br/>
 
 Initial release with support for custom text messages.
 
-### Support and Resources
+### Support
 
 Additional information and previous releases can be found on the [Github page](https://github.com/thibodux/modal_msg).
 
