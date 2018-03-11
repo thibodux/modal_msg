@@ -1,7 +1,7 @@
 /**
  * @fileoverview Class definition for Modal Text Message
  * @author Ryan Thibodeaux
- * @version 1.0.1
+ * @version 1.1.0
  */
 
 /*

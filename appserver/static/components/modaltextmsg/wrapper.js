@@ -1,7 +1,7 @@
 /**
  * @fileoverview Controlling logic for the Modal Text Message feature
  * @author Ryan Thibodeaux
- * @version 1.0.1
+ * @version 1.1.0
  */
 
 /*

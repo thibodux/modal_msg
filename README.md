@@ -25,7 +25,7 @@ The Modal Text Message App for Splunk is a library to extend Splunk dashboards w
 ### About
 
 Author: Ryan Thibodeaux<br/>
-Version: 1.0.3<br/>
+Version: 1.1.0<br/>
 License: BSD 3-clause "New" or "Revised" License<br/>
 Folder Name: modal_msg<br/>
 
@@ -42,6 +42,16 @@ Folder Name: modal_msg<br/>
 
 
 ### Release Notes
+
+#### v1.1.0
+
+- CSS Updates
+    - Increased width of modal window
+    - Increased modal window body font
+    - Fixed inconsistencies with border radius/corner settings
+    - Made app's CSS more independent of Bootstrap settings 
+- Changed navigation bar color to dark gray
+- Fixed border around app logo
 
 #### v1.0.3
 
@@ -85,7 +95,7 @@ Skip this if you downloaded the app from Splunkbase.
 
 Assuming you are checking out the source from Github, here are the steps to build the app tarball to then install in Splunk (assumes Linux or Mac). Note, make sure you keep the top-level repo folder name as "modal_msg" or you will potentially build a poorly structured application package.
 
-```
+```bash
 $ cd <ROOT_DIRECTORY_OF_YOUR_CHOICE>
 $ git clone https://github.com/thibodux/modal_msg modal_msg
 $ tar c --exclude='.git' --exclude='.gitignore' modal_msg > modal_msg.tar
@@ -166,7 +176,7 @@ The modal message content can only contain text strings and the HTML line break 
 
 Here is an example of how to trigger a warning message when no results are returned for a search.
 
-```
+```xml
 <search>
   <query> ... </query>
   <done>

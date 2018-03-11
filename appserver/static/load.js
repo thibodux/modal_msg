@@ -1,7 +1,6 @@
 /**
  * @fileoverview Setup the paths and load the Modal Text Message feature properly load components
  * @author Ryan Thibodeaux
- * @version 1.0.1
  */
 
 /* 
