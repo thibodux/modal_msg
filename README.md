@@ -96,10 +96,10 @@ Skip this if you downloaded the app from Splunkbase.
 Assuming you are checking out the source from Github, here are the steps to build the app tarball to then install in Splunk (assumes Linux or Mac). Note, make sure you keep the top-level repo folder name as "modal_msg" or you will potentially build a poorly structured application package.
 
 ```bash
-$ cd <ROOT_DIRECTORY_OF_YOUR_CHOICE>
-$ git clone https://github.com/thibodux/modal_msg modal_msg
-$ tar c --exclude='.git' --exclude='.gitignore' modal_msg > modal_msg.tar
-$ gzip -q modal_msg.tar
+cd <ROOT_DIRECTORY_OF_YOUR_CHOICE>
+git clone https://github.com/thibodux/modal_msg modal_msg
+tar c --exclude='.git' --exclude='.gitignore' modal_msg > modal_msg.tar
+gzip -q modal_msg.tar
 ```
 
 ### Software requirements
@@ -140,7 +140,7 @@ A Splunk dashboard must first include this app's library in order to use the fea
 
 `<dashboard script="modal_msg:load.js">` 
 
-OR 
+or
 
 `<form script="modal_msg:load.js">` 
 
