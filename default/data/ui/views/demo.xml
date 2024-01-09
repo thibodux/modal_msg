@@ -1,4 +1,4 @@
-<form onunloadCancelJobs="true" hideFooter="true" script="modal_msg:load.js">
+<form onunloadCancelJobs="true" hideFooter="true" script="modal_msg:load.js" version="1.1">
 
   <label>Demo</label>
 
