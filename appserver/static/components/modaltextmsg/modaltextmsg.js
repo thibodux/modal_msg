@@ -24,7 +24,7 @@ define(function(require, exports, module) {
     var div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
-  }  
+  }
 
 /**
  * Creates a new ModalTextMsg object.

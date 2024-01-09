@@ -3,7 +3,7 @@
  * @author Ryan Thibodeaux
  */
 
-/* 
+/*
  * Copyright (c) 2017-2024, Ryan Thibodeaux. All Rights Reserved
  * see included LICENSE file (BSD 3-clause) in the app's root directory
  */

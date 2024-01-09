@@ -54,10 +54,10 @@
             <unset token="form.msg"/>
           </condition>
         </change>
-      </input>      
+      </input>
     </panel>
     <panel>
-      <title>URL Token Message Example</title>    
+      <title>URL Token Message Example</title>
       <html>
         <h4><code>Click on the row of the table to reload this dashboard with a visible message after it loads.</code></h4>
       </html>
@@ -83,7 +83,7 @@
           </link>
         </drilldown>
       </table>
-    </panel>    
+    </panel>
   </row>
 
 
@@ -105,7 +105,7 @@
             <unset token="form.filter_index"/>
           </condition>
         </change>
-      </input>      
+      </input>
       <html>
         <h4><code>Try setting the Search Period or Index Filter to values that should return no data.</code></h4>
       </html>
