@@ -25,7 +25,7 @@ The Modal Text Message App for Splunk is a library to extend Splunk dashboards w
 ### About
 
 Author: Ryan Thibodeaux<br/>
-Version: 1.1.0<br/>
+Version: 2.0.0<br/>
 License: BSD 3-clause "New" or "Revised" License<br/>
 Folder Name: modal_msg<br/>
 
@@ -42,6 +42,12 @@ Folder Name: modal_msg<br/>
 
 
 ### Release Notes
+
+#### v2.0.0
+
+- Added `version=1.1` to dashboard/form nodes in SimpleXML dashboards. This makes
+  the app more compliant with Splunk v9.x and the update to JQuery 3.5.
+- Trivial updates to copyrights, line endings, and other non-functional metadata.
 
 #### v1.1.0
 
@@ -130,6 +136,7 @@ No extra steps are required in order to make the app / library function properly
 ## User Guide
 
 ### Concepts
+
 This app provides a convenient way to extend Splunk dashboards with modal text message prompts. The app comes with pre-defined types / levels of modal windows that use different color schemes (e.g., Errors appear in RED).
 
 ### Usage
@@ -190,7 +197,7 @@ Here is an example of how to trigger a warning message when no results are retur
 
 #### Triggering Modal Messages at Dashboard Load time via URL
 
-Because of how Splunk handles tokens in the URL, there is a separate set of tokens to trigger modal windows via the URL. The same logic and patterns hold as for the tokens in SimpleXML - the only difference is an addition of "_url" to the token names 
+Because of how Splunk handles tokens in the URL, there is a separate set of tokens to trigger modal windows via the URL. The same logic and patterns hold as for the tokens in SimpleXML - the only difference is an addition of "_url" to the token names
 
 | Token | Effect |
 | --- | --- |

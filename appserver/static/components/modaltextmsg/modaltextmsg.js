@@ -5,7 +5,7 @@
  */
 
 /*
- * Copyright (c) 2017-2018, Ryan Thibodeaux. All Rights Reserved
+ * Copyright (c) 2017-2024, Ryan Thibodeaux. All Rights Reserved
  * see included LICENSE file (BSD 3-clause)
  */
 
@@ -24,7 +24,7 @@ define(function(require, exports, module) {
     var div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
-  }  
+  }
 
 /**
  * Creates a new ModalTextMsg object.
